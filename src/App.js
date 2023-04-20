@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header/Header";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
+import "antd/dist/reset.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import TanksContextProvider from "./context/TanksContext";
+import Routing from "./Routing";
+import CommentContextProvider from "./context/commentsContext";
+import CartContextProvider from "./context/cartContext";
+import FavouriteContextProvider from "./context/favouritesContext";
+import LikesContextProvider from "./context/likesContext";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TanksContextProvider>
+        <CommentContextProvider>
+          <CartContextProvider>
+            <FavouriteContextProvider>
+              <LikesContextProvider>
+                <BrowserRouter>
+                  <Header />
+                  <Routing />
+                  <Footer />
+                </BrowserRouter>
+              </LikesContextProvider>
+            </FavouriteContextProvider>
+          </CartContextProvider>
+        </CommentContextProvider>
+      </TanksContextProvider>
     </div>
   );
-}
+};
 
 export default App;
